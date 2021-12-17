@@ -1,0 +1,13 @@
+#Idea
+.idea
+
+#Node
+node_modules
+package-lock.json
+
+#Sass
+public/sass/app.sass
+public/css/*.map
+
+#Css
+public/css/theme.css
