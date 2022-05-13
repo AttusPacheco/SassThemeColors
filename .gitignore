@@ -11,3 +11,6 @@ public/css/*.map
 
 #Css
 public/css/theme.css
+
+#Colors
+colors.json

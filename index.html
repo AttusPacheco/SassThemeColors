@@ -4,24 +4,69 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Sass With NodeJs</title>
-        <link rel="stylesheet" href="./public/css/app.css">
-        <link rel="stylesheet" href="./public/css/theme.css">
+        <title>SassThemeColors</title>
+        <link rel="stylesheet" href="/public/css/app.css">
+        <link rel="stylesheet" href="/public/css/theme.css">
     </head>
 
     <body>
-        <div class="container content">
-            <div class="title">
-                Lorem Ipsum
+        <section class="content">
+            <div class="container box p-5" id="container">
+                <div class="title" id="title">
+                    Lorem Ipsum
+                </div>
+
+                <div class="description" id="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                    software like Aldus PageMaker including versions of Lorem Ipsum.
+                </div>
+
+                <hr>
+
+                <div class="colors mt-3 col-md-12">
+                    <form method="post" action="">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="title-color">Title</label>
+                                <input type="color" id="title-color" name="title" value="#000000" required class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="description-color">Description</label>
+                                <input type="color" id="description-color" name="description" value="#213842" required class="form-control">
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <button class="btn btn-dark shadow col-12" type="submit">Change</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="description">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
+        </section>
+
+        <script>
+            let title = document.getElementById('title-color'),
+                description = document.getElementById('description-color')
+
+            title.addEventListener('change', function () {
+                document.getElementById('title').setAttribute('style', `color: ${this.value}`)
+            })
+
+            description.addEventListener('change', function () {
+                document.getElementById('description').setAttribute('style', `color: ${this.value}`)
+            })
+
+            fetch(`${window.location.origin}/colors.json`)
+                .then(response => {
+                    response.json().then(data => {
+                        title.setAttribute('value', data[0])
+                        description.setAttribute('value', data[1])
+                    })
+                }).catch(e => {console.log(e)})
+        </script>
     </body>
 </html>

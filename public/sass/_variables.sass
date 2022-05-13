@@ -1,2 +1,7 @@
-$titleColor: '${clrArg1}'
-$descriptionColor: '${clrArg2}'
+//Template Variables
+
+$titleColor: '${clrArg0}' // The CompileTempleteColor start count by '0', consequently the first $clrArg(Color Argument) is '0'
+$descriptionColor: '${clrArg1}' // Script is executed one by one, then after '0' comes the '1'
+
+// Default colors
+$boxShadowColor: lighten($titleColor, 55)
